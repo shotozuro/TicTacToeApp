@@ -5,7 +5,7 @@ import com.shotozuro.othello.model.Cell;
 import com.shotozuro.othello.model.Player;
 import com.shotozuro.othello.view.MainActivity;
 
-public class OthelloPresenter {
+public class TicTacToePresenter {
     public MainActivity activity;
     public Board board;
     public Cell cell;
