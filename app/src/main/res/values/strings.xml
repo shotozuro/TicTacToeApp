@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">Tic Tac Toe</string>
-    <string name="box_size">90dp</string>
 </resources>
