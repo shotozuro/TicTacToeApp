@@ -1,4 +1,3 @@
 package com.shotozuro.othello.model;
 
-public class Player {
-}
+public enum Player { X, O }
