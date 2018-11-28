@@ -13,7 +13,6 @@ import com.shotozuro.othello.model.Player;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
     private GridLayout grid;
     private TextView winner;
     private TextView message;
@@ -32,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onTapCell (View v) {
+        Button button;
         button = (Button) v;
 
         String tag;
@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         row = Integer.valueOf(tag.substring(0,1));
         col = Integer.valueOf(tag.substring(1,2));
 
-        Player current_player = board.mark(row, col);
-        if (current_player != null) {
-            button.setText(current_player.toString());
-            if (current_player == board.getWinner()) {
-                winner.setText(current_player.toString());
+        Player currentPlayer = board.mark(row, col);
+        if (currentPlayer != null) {
+            button.setText(currentPlayer.toString());
+            if (currentPlayer == board.getWinner()) {
+                winner.setText(currentPlayer.toString());
                 message.setText("WIN!");
             } else if (board.isDraw()){
                 message.setText("DRAW!");

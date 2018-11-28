@@ -2,11 +2,9 @@ package com.shotozuro.othello.model;
 
 public class Board {
     private Cell[][] cells = new Cell[3][3];
-    private Player current_player;
+    private Player currentPlayer;
     private Player winner;
     private boolean isGameEnded;
-    private boolean isDraw;
-
 
     public Board () {
         restart();
@@ -15,19 +13,19 @@ public class Board {
     public void restart () {
         clearBoard();
         winner = null;
-        current_player = Player.X;
+        currentPlayer = Player.X;
         isGameEnded = false;
     }
 
     public Player mark (int row, int col) {
-        Player moved_player = null;
-        if (isGameEnded == false) {
-            if (hasCellSet(row, col) == false) {
-                moved_player = current_player;
-                cells[row][col].setPlayer(current_player);
+        Player movedPlayer = null;
+        if (!isGameEnded) {
+            if (!hasCellSet(row, col)) {
+                movedPlayer = currentPlayer;
+                cells[row][col].setPlayer(currentPlayer);
 
-                if (isWin(current_player, row, col)) {
-                    winner = current_player;
+                if (isWin(currentPlayer, row, col)) {
+                    winner = currentPlayer;
                     isGameEnded = true;
                 } else {
                     switchPlayer();
@@ -35,7 +33,7 @@ public class Board {
             }
         }
 
-        return moved_player;
+        return movedPlayer;
     }
 
     public boolean isDraw () {
@@ -69,21 +67,21 @@ public class Board {
     }
 
     private void switchPlayer () {
-        current_player = current_player == Player.X ? Player.O : Player.X;
+        currentPlayer = currentPlayer == Player.X ? Player.O : Player.X;
     }
 
-    private boolean isWin (Player player, int current_row, int current_col) {
-        return cells[current_row][0].getPlayer() == player
-                && cells[current_row][1].getPlayer() == player
-                && cells[current_row][2].getPlayer() == player ||
-                cells[0][current_col].getPlayer() == player
-                && cells[1][current_col].getPlayer() == player
-                && cells[2][current_col].getPlayer() == player ||
-                current_col == current_row
+    private boolean isWin (Player player, int currentRow, int currentCol) {
+        return cells[currentRow][0].getPlayer() == player
+                && cells[currentRow][1].getPlayer() == player
+                && cells[currentRow][2].getPlayer() == player ||
+                cells[0][currentCol].getPlayer() == player
+                && cells[1][currentCol].getPlayer() == player
+                && cells[2][currentCol].getPlayer() == player ||
+                currentCol == currentRow
                 && cells[0][0].getPlayer() == player
                 && cells[1][1].getPlayer() == player
                 && cells[2][2].getPlayer() == player ||
-                current_col + current_row == 2
+                currentCol + currentRow == 2
                 && cells[0][2].getPlayer() == player
                 && cells[1][1].getPlayer() == player
                 && cells[2][0].getPlayer() == player;
